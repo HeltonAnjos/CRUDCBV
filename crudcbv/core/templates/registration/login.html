@@ -1,0 +1,25 @@
+{% extends 'core/base.html' %}
+{% load bootstrap4 %}
+{% block content %}
+<div class="container">
+    <div class="row justify-content-center align-items-center vh-100">
+        <div class="col-4">
+            <h1 class="display-4 pl-4 ml-4">Login</h1>
+            <form method="POST" autocomplete="off" action="{% url 'login' %}">
+                {% csrf_token %}
+                {% bootstrap_form form %}
+
+                <br>
+                {% if error %}
+                <span style="color: red;">{{ error }}</span>
+                <br><br>
+                {% endif %}
+                {% buttons %}
+                    <button type="submit" class="btn btn-success btn-block justify-content-center">Entrar</button>
+                {% endbuttons %}
+
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

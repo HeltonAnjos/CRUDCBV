@@ -1,0 +1,32 @@
+{% extends 'core/base.html' %}
+{% block content %}
+
+<div class="row-10 justify-content-center align-items-center ml-3 pl-3 mr-3">
+    <div class="col-12">
+        <nav class="navbar navbar-light bg-light">
+            <h1 class="display-4 pl-4 ml-4">Fornecedores</h1>
+        </nav>
+        <table class="table table-striped text-center">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Nome</th>
+                    <th scope="col">Telefone</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for fornecedor in fornecedores %}
+                    <tr>
+                        <td>{{ fornecedor.id }}</td>
+                        <td>{{ fornecedor.nomeForn }}</td>
+                        <td>{{ fornecedor.telefoneForn }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <a class="btn btn-primary mr-2 float-right" href="{% url 'lst_fornecedor' %}">Voltar</a>
+        <button class="btn btn-info mr-2 float-right" onclick="window.print()">Imprimir / Salvar PDF</button>
+    </div>
+</div>
+
+{% endblock %}

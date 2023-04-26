@@ -1,0 +1,98 @@
+{% load static %}
+{% load bootstrap4 %}
+
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  {% bootstrap_css %}
+  <title>PYCON</title>
+  <script src="{% static 'fontawesomefree/js/all.min.js' %}"></script>
+  <link href="{% static 'fontawesomefree/css/all.min.css' %}" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+  <div class="container-fluid bg-primary mb-0">
+    <div class="row">
+      <div class="col-12">
+        <header>
+          <div class="container-fluid">
+            <nav class="navbar navbar-expand-md bg-primary mr-auto">
+
+              <div class="logo">
+                <a class="navbar-brand mt-1 mb-0 text-white" href="{% url 'home' %}">
+                  <h4>PYCON</h4>
+                </a>
+                {% if request.user.is_authenticated %}
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#textoNavbar"
+                  aria-controls="textoNavbar" aria-expanded="false" aria-label="Alterna navegação">
+                  <span class="navbar-toggler-icon"></span>
+                </button>
+              </div>
+              <div class="menu">
+                <ul class="navbar-nav mr-auto">
+                  <li class="nav-item active">
+                    <div class="dropdown">
+                      <button
+                        class="btn btn-sm btn-block ml-1 mt-1 mr-2 btn-outline text-white font-weight-bold dropdown-toggle"
+                        type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
+                        aria-expanded="false">
+                        <i class="fa-regular fa-address-card"></i>
+                        Cadastro
+                      </button>
+                      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                        <a class="dropdown-item" href="{% url 'add_cliente' %}">Cliente</a>
+                        <a class="dropdown-item" href="{% url 'add_fornecedor' %}">Fornecedor</a>
+                        <a class="dropdown-item" href="{% url 'add_produto' %}">Produto</a>
+                      </div>
+                    </div>
+                  </li>
+                  <li class="nav-item active ml-2">
+                    <div class="dropdown">
+                      <button
+                        class="btn btn-sm btn-block ml-1 mr-3 mt-1 btn-outline text-white font-weight-bold dropdown-toggle"
+                        type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
+                        aria-expanded="false">
+                        <i class="fa-solid fa-list-ul"></i>
+                        Consulta
+                      </button>
+                      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                        <a class="dropdown-item" href="{% url 'lst_cliente' %}">Cliente</a>
+                        <a class="dropdown-item" href="{% url 'lst_fornecedor' %}">Fornecedor</a>
+                        <a class="dropdown-item" href="{% url 'lst_produto' %}">Produto</a>
+                      </div>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+                <button class="btn btn-sm ml-1 mr-3 mt-1 btn-outline text-white font-weight-bold"
+                  type="button" aria-expanded="false">
+                    <i class="fa-solid fa-arrow-right-from-bracket"></i>
+                    <a class="text-white pull-right " style="text-decoration: none;" href="/accounts/logout">Sair</a>
+                </button>
+              {% endif %}
+            </nav>
+          </div>
+      </div>
+      </header>
+    </div>
+  </div>
+  </div>
+
+  {% block content %}{% endblock %}
+  <footer class="fixed-bottom bg-primary py-2">
+    <div class="container-fluid text-white">
+      <div class="row justify-content-center">
+        <div class="col-lg-6 text-center">
+          <h5>PYControl | HJ Soluções</h5>
+          <span style="color: white; font: bold;">{% now "d F Y H:i" %}</span>
+        </div>
+      </div>
+    </div>
+  </footer>
+  {% bootstrap_javascript jquery='full' %}
+</body>
+
+</html>
